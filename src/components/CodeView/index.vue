@@ -5,7 +5,7 @@
         <div v-show="showCode">
             <el-tabs v-model="activeTab">
                 <el-tab-pane v-for="item of config" :key="item.key" :label="item.caption" :name="item.key">
-                    <codemirror v-model="item.content"  :style="{ height: '640px' }"
+                    <codemirror v-model="item.content"  :style="{ height: '800px' }"
                         :autofocus="true" :indent-with-tab="true" :tabSize="2" :extensions="extensions" />
                 </el-tab-pane>
             </el-tabs>

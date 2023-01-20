@@ -1,4 +1,5 @@
-<script setup lang="ts">
+export const codeConfig=[
+    {key:'index.vue',caption:'index.vue',content:`<script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { Codemirror } from "vue-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
@@ -97,4 +98,79 @@ let activeTab = ref('demo')
 	margin: 16px !important;
 	border: 3px dotted yellow;
 }
-</style>
+</style>`},
+    {key:'app1Transtator.ts',caption:'app1Transtator.ts',content:`//
+import { ref, reactive, computed } from "vue";
+
+import { useMyForm } from "@/views/form/formTranslator.ts";
+import { useMyTable } from "@/views/table/tableTranlator.ts";
+//
+//
+export default function useApp1Transtator(config) {
+  //
+  const criteriaValue = reactive({});
+  const tableValue = ref([]);
+  //
+  function onSearch() {
+	//First we could validate form here,ignored
+	//Call configed function to retrieve data
+    let result = config.retrieveMethod(criteriaValue);
+    tableValue.value = result;
+  }
+  //
+  const configTranslated = reactive({
+    sys: { component: "el-row" },
+    props: {
+      gutter: 10,
+      justify: "start",
+      align: "top",
+    },
+    //
+    slots: {
+      default: [
+        {
+          sys: { component: "el-col" },
+          props: {
+            span: 22,
+          },
+          slots: {
+            default: useMyForm(criteriaValue, config.criteriaConfig),
+          },
+        },
+        {
+          sys: { component: "el-col" },
+          props: {
+            span: 2,
+          },
+          slots: {
+            default: {
+              sys: { component: "ElButton" },
+              props: {
+                type: "success",
+              },
+              slots: {
+                default: "Search",
+              },
+              events: {
+                click: onSearch,
+              },
+            },
+          },
+        },
+        {
+          sys: { component: "el-col" },
+          props: {
+            span: 24,
+          },
+          slots: {
+            default: useMyTable(tableValue, config.tableConfig),
+          },
+        },
+      ],
+    },
+  });
+  //
+  return { configTranslated, criteriaValue, tableValue };
+}
+`},
+  ]

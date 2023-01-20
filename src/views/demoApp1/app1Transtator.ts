@@ -1,10 +1,10 @@
-//模拟这是一个StandardPage
+//
 import { ref, reactive, computed } from "vue";
 
 import { useMyForm } from "@/views/form/formTranslator.ts";
 import { useMyTable } from "@/views/table/tableTranlator.ts";
 //
-//HAHA,这里通过config提供参数，其实可以定义config的数据格式
+//
 export default function useApp1Transtator(config) {
   //
   const criteriaValue = reactive({});

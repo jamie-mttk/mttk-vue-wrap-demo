@@ -110,10 +110,7 @@ export const layoutwConfig = reactive({
       },
       {
         props: {
-          //子元素配置,具体含义由组件决定,这里不以_开头的会设置到Form Item上
           span: 24,
-          //_开头的说明是特殊含义,这里是指字段宽度,可以覆盖上层的设置
-          _key: "4", //唯一标识
         },
         slots: {
           //empty:{type:'component',value:Search},

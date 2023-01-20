@@ -4,20 +4,21 @@ export const codeConfig=[
     import { valueInput, configInput1, configInput2} from './data.ts'
     import {codeConfig} from './code.ts'
     import  CodeView from '@/components/CodeView/index.vue'
-    import CompWrap from "@/components/vueWrapper/CompWrap.vue";
+    
     </script>
     
     <template>
       <div>
-        <h4>This is a simple sample. The below input is rendered with traditional mode.<br>
+        <h3>This is a simple sample. The below input is rendered with traditional mode.<br>
           Simplely to say, the el-input is configured with multiple props.
-        </h4>
+        </h3>
         <el-input v-model="valueInput" placeholder="Please input value" :clearable="true"></el-input>
         <el-divider></el-divider>
-        <h4>Here the input is configured with a JS with same funcionalities as above.</h4>
+        <h3>Here the input is configured with a JS with same funcionalities as above.<br>
+        And setting modelValue with computed is also demotrated.</h3>
         <CompWrap :config="configInput1"></CompWrap>
         <el-divider></el-divider>
-        <h4>It is also configured with JS to demostrate props,slots,events.</h4>
+        <h3>It is also configured with JS to demostrate props,slots,events.</h3>
         <CompWrap :config="configInput2">
           <template #mysuffix>Suffix to demostrate inherit</template>
         </CompWrap>
@@ -28,25 +29,29 @@ export const codeConfig=[
     <style>
     
     </style>`},
-    {key:'data.ts',caption:'data.ts',content:`import { ref, reactive } from "vue";
-
-
+    {key:'data.ts',caption:'data.ts',content:`import { ref, reactive,computed} from "vue";
 
     //The value of the input which are share in this sample
     export const valueInput = ref("InitValue");
     
-    
-    //input配置
+    //A simple input configuration
     export const configInput1 = reactive({
       sys: {
         //
         component: "ElInput",
-        modelValue: valueInput,
+        //Set modelValue with computed,demo only since here it is not necessary
+        modelValue: computed({
+          get() {
+            return valueInput.value
+          },
+          set(value) {
+            valueInput.value=value
+          }
+        }),
       },
       props: {
         placeholder: "Please input value",
         clearable: true,
-    
       },
       slots: {},
       events: {},
@@ -54,7 +59,7 @@ export const codeConfig=[
     //
     //Input size to demostrate that the config properties can be changed dynamically
     const inputSize = ref("default");
-    //input配置
+    //A complex input configuration
     export const configInput2 = reactive({
       sys: {
         //
@@ -69,13 +74,36 @@ export const codeConfig=[
         size: inputSize,
       },
       slots: {
-        //Here to demostrate different way to set slots
-        prepend: { type: 'function', value: samplePrepend },
-        //The value is a array
-        append: [{ type: "html", value: "w<b>or</b>ld" },sampleAppend],
+        //It can be an array/object, the value can be an array/object as well
+        //For one slot it can be configured by different types
+        prefix: [
+          { type: "text", value: ["text1", "text2"] },
+          {
+            type: "wrap",
+            value: {
+              //Use element tag to display name
+              sys: {
+                component: "el-tag",
+              },
+              props: {
+                type: "primary",
+                effect: "dark",
+              },
+              slots: {
+                default: "Test tag1",
+              },
+              events: {},
+            },
+          },
+        ],
         //If both inherit and something else is configured, what will happen?
         //If the inherit is implemented at parent component ,the inherit will take place;otherwise the inherit is ignored
-        suffix: [{ type: "inherit", value: "mysuffix" },'Pure text']
+        suffix: [{ type: "inherit", value: "mysuffix" }, "Pure text"],
+    
+        //Here to demostrate different way to set slots
+        prepend: { type: "function", value: samplePrepend },
+        //The value is a array
+        append: [{ type: "html", value: "H<b>ell</b>o " }, sampleAppend],
       },
       events: {
         //Once get focus enlarge the component and restore once lose focus
@@ -84,11 +112,11 @@ export const codeConfig=[
       },
     });
     //
-    function samplePrepend(){
-      return 'Sample <b>prepend</b>'
+    function samplePrepend() {
+      return "Hello <b>prepend</b>";
     }
-    function sampleAppend(){
-      return '@Sample <b>append</b>'
+    function sampleAppend() {
+      return "World <b>append</b>";
     }
     
     function inputFocused() {

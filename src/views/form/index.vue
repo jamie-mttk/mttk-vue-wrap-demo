@@ -3,8 +3,8 @@ import { ref, reactive, defineAsyncComponent, computed, isRef, isReactive, onBef
 import { formValue, formConfig1 } from './data1.ts'
 import { configFormSimple } from './data2.ts'
 import { useMyForm } from './formTranslator.ts'
-
-
+import  CodeView from '@/components/CodeView/index.vue'
+import {codeConfig} from './code.ts'
 //
 const formConfig2 = useMyForm(formValue, configFormSimple)
 
@@ -22,6 +22,8 @@ const formConfig2 = useMyForm(formValue, configFormSimple)
 			Anyway only the possibility of simplify is demoed here,it is NOT a suggestion or specification.</h3>
 
 		<CompWrap ref="mainRef2" :config="formConfig2"></CompWrap>
+		
+		<CodeView :config="codeConfig"></CodeView>
 	</div>
 </template>
 <style>

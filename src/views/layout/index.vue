@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
 import { layoutwConfig } from './data.ts'
-
-
+import  CodeView from '@/components/CodeView/index.vue'
+import {codeConfig} from './code.ts'
 
 
 
@@ -10,7 +10,9 @@ import { layoutwConfig } from './data.ts'
 
 <template>
 	<h3>Layout is another container component. This implementation is based on element plus el-row/el-col.</h3>
-		<CompWrap ref="mainRef1" :config="layoutwConfig"></CompWrap>
+	<CompWrap ref="mainRef1" :config="layoutwConfig"></CompWrap>
+		
+	<CodeView :config="codeConfig"></CodeView>
 </template>
 <style>
 
