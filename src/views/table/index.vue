@@ -29,14 +29,14 @@ function clearSelection(){
 		<h3>Table can be considered as a container: One el-table with multiple el-table-column.</h3>
 		{{ tableValue }}<br>
 		<el-button type="danger" @click="clearData">Clear data to see the content of empty slot</el-button>
-		<h3>Here a simple sample to call method to clear selection. A more complex method call solution is under development.</h3>
+		<h3>Here a simple sample to call method to clear selection.</h3>
 		<el-button type="primary" @click="clearSelection">Clear selection</el-button><br><br>
 		<CompWrap ref="mainRef1" :config="tableConfig1"></CompWrap>
 		<el-divider></el-divider>
-		<h3>If look into the configuration, it is powerful and flexible,but it look quite complex.<br />
+		<h3>If look into the configuration, it is powerful and flexible,but it look quite complex.Refer to "data1.ts".<br />
 		We could simplify the table configuration with customized configuration format ,
-		and then write a piece of code to translate to the standard format as the config in the above sample.<br>
-		How to simplfy the config depends on the requrirement, here is just a sample, you can define your own config file and translate code.<br>
+		and then write a piece of code to translate to the standard format as the config in the above sample.Refer to "data2.ts".<br>
+		How to simplfy the config depends on the requrirement, here is just a sample, you can define your own config file and translate code as you like.<br>
 		Normally in a real project multiple config can be defined for different use cases.<br>
 		</h3>
 		

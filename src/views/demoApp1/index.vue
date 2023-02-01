@@ -65,17 +65,17 @@ let activeTab = ref('demo')
 			<el-tab-pane label="Demo" name="demo">
 				<CompWrap ref="pageRef" :config="configTranslated"></CompWrap>
 			</el-tab-pane>
-			<el-tab-pane label="Introduction" name="intro">
+			<el-tab-pane label="Description" name="intro">
 				<h3>In a real project,normally 80% pages are similiar or they could be summarized into several templates. 
 				So we could define the  variable into a config file, and then render the page according to the configuration.<br>
 				Use Single-File Component absolutely can fullfil the requirement, but you need to define a SFC component for each component.
 				This project can meet this requirement with a common way and all the code are pure JS code.<br>
-				This demo is a typical page:there is a form to collect criteria information, and then retrieve data from server to display in the table.<br>
+				This demo is a typical page:there is a form to collect criteria, and then retrieve data from server to display in the table.<br>
 				Below are the content in config file: <br>
 				<b>FORM config</b> The form fields and the field component type<br>
 				<b>Method to retrieve data</b> In this demo random data is generate. In a real project it can be URL and then use axios/fetch to call server API.<br>
 				<b>Table config</b> Table columns<br>
-				Anyway it is a simple demo, you coudl add more functionalities in  real project.
+				Anyway it is a simple demo, you could add more functionalities in  real project.
 				</h3>
 			</el-tab-pane>
 			<el-tab-pane label="config" name="config">

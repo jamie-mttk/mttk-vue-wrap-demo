@@ -13,13 +13,14 @@ const formConfig2 = useMyForm(formValue, configFormSimple)
 <template>
 	<div style="margin:10px;">
 
-		<h3>This is a sample to configure form</h3>
+		<h3>This is a sample to configure form.Refer to "data1.ts".</h3>
 		{{ formValue }}
 		<CompWrap ref="mainRef1" :config="formConfig1"></CompWrap>
 		<el-divider></el-divider>
 		<h3>Same as the previous samples, here we define a simple form config format to simplify the configuration<br />
 			In a real project, the useMyForm may have a third paramter to project specific specification.<br />
-			Anyway only the possibility of simplify is demoed here,it is NOT a suggestion or specification.</h3>
+			Anyway here only demo hwo to simplify the configuration, you could design your simplify method as you like.<br/>
+			Refer to "data2.ts".</h3>
 
 		<CompWrap ref="mainRef2" :config="formConfig2"></CompWrap>
 		

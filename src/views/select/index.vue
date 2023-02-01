@@ -14,16 +14,16 @@ const config3Translated=useMySelect(config3)
 	<div>
 		<h3>This sample try to show how to enhance the functionalities of the base component.<br>
 			The el-select can set options by el-option in template.<br>
-			Here we try to config options by JSON or by funciton. In real project can also config options by a String which is a URL to remottely load options.
+			Here we try to config options from a  JSON or from a funciton. In real project can also config options by a String which is a URL to remotely load options.
 		</h3>
 		{{ value }}
-		<h3>In this sample options are configured in slot directly</h3>
+		<h3>In this sample options are configured in slot directly.Refer to config1 in "data.ts".</h3>
 		<CompWrap :config="config1"></CompWrap>	
 		<el-divider></el-divider>
-		<h3>In this sample options are configured by JSON array</h3>
+		<h3>In this sample options are configured by JSON array and then translated into standard format.Refer to config2 in "data.ts".</h3>
 		<CompWrap :config="config2Translated"></CompWrap>	
 		<el-divider></el-divider>
-		<h3>In this sample options are configured by function</h3>
+		<h3>In this sample options are configured by function and then translated into standard format.Refer to config2 in "data.ts".</h3>
 		<CompWrap :config="config3Translated"></CompWrap>	
 		<el-divider></el-divider>
 		<CodeView :config="codeConfig"></CodeView>

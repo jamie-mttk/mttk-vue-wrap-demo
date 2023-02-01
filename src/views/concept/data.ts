@@ -1,6 +1,6 @@
 import { ref, reactive,computed} from "vue";
 
-//The value of the input which are share in this sample
+//The value of the input which are shared in this sample
 export const valueInput = ref("InitValue");
 
 //A simple input configuration

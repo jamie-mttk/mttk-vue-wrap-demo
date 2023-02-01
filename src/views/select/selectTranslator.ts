@@ -30,6 +30,7 @@ function translateOptions(options, configNew) {
     //build wrap array
     configNew.slots.default =parseOptionsArray(options, valueOptions)
   } else if (typeof valueOptions == "function") {
+  //If the function returns a Promise, we should await here
     configNew.slots.default=  parseOptionsFunction(options,valueOptions)
   } else {
     throw "Unsupported value option type:" + typeof valueOptions;
