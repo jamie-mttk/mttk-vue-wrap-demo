@@ -20,7 +20,7 @@ import { reactive } from 'vue'
 
 const formInline = reactive({
   user: 'aa',
-  region: 'beijing',
+  region: 'beijinga',
 })
 
 const onSubmit = () => {
