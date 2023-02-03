@@ -1,8 +1,11 @@
 <script setup lang="ts">
 
-import { valueInput, configInput1, configInput2} from './data.ts'
+import { valueInput, configInput1, configInput2,configInput3} from './data.ts'
 import {codeConfig} from './code.ts'
 import  CodeView from '@/components/CodeView/index.vue'
+import {isRef,isReactive,ref,reactive,toRaw} from 'vue'
+
+
 
 </script>
 
@@ -22,6 +25,13 @@ import  CodeView from '@/components/CodeView/index.vue'
 			<template #mysuffix>Suffix to demostrate inherit</template>
 		</CompWrap>
 		<el-divider></el-divider>
+		<h3>From version 0.3.0, a flat config format is supported.Refer to configInput3 of "data.ts".<br>
+		It has same functionalities of standard config, but reduce the config hierachy levels.</h3>
+		<CompWrap :config="configInput3">
+			<template #mysuffix>Suffix to demostrate inherit of flat config</template>
+		</CompWrap>
+		<el-divider></el-divider>
+
 		<CodeView :config="codeConfig"></CodeView>
 	</div>
 </template>

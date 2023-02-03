@@ -34,204 +34,114 @@ export const codeConfig=[
     
     </style>`},
     {key:'data.ts',caption:'data.ts',content:`import { ref, reactive } from "vue";
-    import { tableConfig1 } from "@/views/table/data1.ts";
+
+    //The value of the input which are share in this sample
+    export const value = ref("003");
     
-    
-    
-    const myColor = ref("#ffff00");
-    export const layoutwConfig = reactive({
+    //
+    export const config1 = reactive({
       sys: {
-        component: "el-row",
+        //
+        component: "ElSelect",
+        modelValue: value,
       },
       props: {
-        gutter: 10,
-        justify: "start",
-        align: "top",
+        placeholder: "Please select manager",
+        clearable: true,
+        filterable: true,
       },
-      //
       slots: {
         default: [
           {
-            sys: {
-              component: "el-col",
-            },
-            props: {
-              span: 8,
-            },
-            slots: {
-              default: "First row first column",
-            },
-            styles: {
-              borderRadius: "4px",
-              backgroundColor: "#f00",
-              border: "2px solid blue",
-              minHeight: "48px",
-            },
-          },
-        {
-            sys: {
-              component: "el-col",
-            },
-            props: {
-              span: 8,
-            },
-            slots: {
-          default: "First row second column",
-            },
-            styles: {
-              borderRadius: "4px",
-              backgroundColor: "#0f0",
-              border: "2px solid blue",
-              minHeight: "48px",
-            },
-          },
-        {
-            sys: {
-              component: "el-col",
-            },
-            props: {
-              span: 8,
-            },
-            slots: {
-          default: "First row third column",
-            },
-            styles: {
-              borderRadius: "4px",
-              backgroundColor: "#00f",
-              border: "2px solid blue",
-              minHeight: "48px",
-            },
-          },
-        {
-            sys: {
-              component: "el-col",
-            },
-            props: {
-              span: 12,
-            },
-            slots: {
-          default: "Second row first column",
+            type: "wrap",
+            value: {
+              sys: { component: "ElOption" },
+              props: { label: "Tom", value: "001" },
             },
           },
           {
-            sys: {
-              component: "el-col",
-            },
-            props: {
-              span: 12,
-            },
-            slots: {
-              //empty:{type:'component',value:Search},
-              default: ["You can change background here",{
-                type: "wrap",
-                value: {
-                  sys: {
-                    component: "el-color-picker",
-                    modelValue: myColor,
-                  },
-                  props: {
-                    //
-                    showAlpha: true,
-                  },
-                  styles: {
-                    borderRadius: "1px",
-                    backgroundColor: "#0000ff",
-                    border: "2px solid purple",
-                    minHeight: "64px",
-                  },
-                },
-              }],
+            type: "wrap",
+            value: {
+              sys: { component: "ElOption" },
+              props: { label: "Jack", value: "002" },
             },
           },
           {
-            props: {
-              //子元素配置,具体含义由组件决定,这里不以_开头的会设置到Form Item上
-              span: 24,
-              //_开头的说明是特殊含义,这里是指字段宽度,可以覆盖上层的设置
-              _key: "4", //唯一标识
+            type: "wrap",
+            value: {
+              sys: { component: "ElOption" },
+              props: { label: "Peter", value: "003" },
             },
-            slots: {
-              //empty:{type:'component',value:Search},
-              default: { type: "wrap", value: tableConfig1 },
+          },
+          {
+            type: "wrap",
+            value: {
+              sys: { component: "ElOption" },
+              props: { label: "Alice", value: "004" },
             },
-            classes: ["testClass2"],
           },
         ],
       },
-    
-      //Set styles or classes
-      styles: {
-        backgroundColor: myColor,
-        border: "5px solid red",
-      },
-      classes: ["testClass1"],
+      events: {},
     });
-    `},
-    {key:'selectTranslator.ts',caption:'selectTranslator.ts',content:`import { ref, reactive } from "vue";
-
-
-    export function useMySelect(config: any) {
-      //Clone may cause the value to be evaluted?So no clone here so far
-    let configNew=config
-      //extra
-      let extra = configNew.extra;
-      delete configNew.extra;
-      //
-      if (extra?.options) {
-        translateOptions(extra.options, configNew);
-      }
-      //
-      return reactive(configNew);
-    }
     
-    //translate options from config to slot
-    function translateOptions(options, configNew) {
-      //
-      if (!configNew.slots) {
-        configNew.slots = {};
-      }
-      //
-      let valueOptions = options.value;
-      if (!valueOptions) {
-        return;
-      }
-      if (Array.isArray(valueOptions)) {
-        //build wrap array
-        configNew.slots.default =parseOptionsArray(options, valueOptions)
-      } else if (typeof valueOptions == "function") {
-        configNew.slots.default=  parseOptionsFunction(options,valueOptions)
-      } else {
-        throw "Unsupported value option type:" + typeof valueOptions;
-      }
-    }
-    //parse options array to wrap options
-    function parseOptionsArray(options, value) {
-      let labelField = options.labelField || "id";
-      let valueField = options.valueField || "name";
-      //
-      let result ={
-        type: "wrap",
-        value:[]}
-      //
-      for (let v of value) {
-        result.value.push({
-            sys: { component: "el-option" },
-            props: {
-              label: v[labelField],
-              value: v[valueField],
-            }
-          }
-       );
-      }
-      //
-      return result;
-    }
     //
-    function parseOptionsFunction(options, value) {
-      //Evaluate function 
-      let result=value()
-      //
-      return parseOptionsArray(options,result)
-    
-    }`},
+    export const config2 = reactive({
+      sys: {
+        //
+        component: "ElSelect",
+        modelValue: value,
+      },
+      props: {
+        placeholder: "Please select",
+        clearable: true,
+        filterable: true,
+      },
+      slots: {},
+      events: {},
+      extra: {
+        options: {
+          valueField: "code",
+          labelField: "name",
+          value: [
+            { code: "001", name: "Tom" },
+            { code: "002", name: "Jack" },
+            { code: "003", name: "Peter" },
+            { code: "004", name: "Alice" },
+          ],
+        },
+      },
+    });
+    //
+    export const config3 = reactive({
+      sys: {
+        //
+        component: "ElSelect",
+        modelValue: value,
+      },
+      props: {
+        placeholder: "Please select",
+        clearable: false,
+        filterable: false,
+      },
+      slots: {},
+      events: {},
+      extra: {
+        options: {
+          valueField: "code",
+          labelField: "name",
+          value: loadOptions,
+        },
+      },
+    });
+    //Demo to load data,maybe from remote server
+    function loadOptions() {
+      return [
+        { code: "001", name: "Tom" },
+        { code: "002", name: "Jack" },
+        { code: "003", name: "Peter" },
+        { code: "004", name: "Alice" },
+      ];
+    }
+    `},
   ]
