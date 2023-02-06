@@ -1,6 +1,6 @@
 {
   "name": "vuewrapperDemo",
-  "version": "0.0.0",
+  "version": "0.3.2",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,7 @@
     "vue": "^3.2.45",
     "vue-codemirror": "^6.1.1",
     "vue-router": "^4.1.6",
-    "vuewrapper": "^0.2.0"
+    "vuewrapper": "^0.3.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.12",

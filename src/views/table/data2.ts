@@ -28,7 +28,7 @@ export const configTableSimple = {
 };
 
 function elTagFormatter(type, key) {
-  return function (sp) {
+  return function (context,sp) {
     let address = sp.slotValue.row[key];
     //This the HTML of el-tag
     return (

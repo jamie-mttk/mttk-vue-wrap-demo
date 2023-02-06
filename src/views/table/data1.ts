@@ -24,7 +24,7 @@ export const tableValue = ref([
 ]);
 
 //Just for demo purpose
-function formatBirthday(d) {
+function formatBirthday(context,d) {
   if (d.slotValue?.row?.date) {
     return d.slotValue.row.date.replaceAll("-", "/");
   }
@@ -125,7 +125,7 @@ export const tableConfig1 = reactive({
           },
           slots: {
             //empty:{type:'component',value:Search},
-            default: function (sp) {
+            default: function (context,sp) {
               let address = sp.slotValue.row.address;
               //This the HTML of el-tag
               return (

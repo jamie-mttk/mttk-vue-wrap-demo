@@ -76,7 +76,7 @@ export const codeConfig=[
     ]);
     
     //Just for demo purpose
-    function formatBirthday(d) {
+    function formatBirthday(context,d) {
       if (d.slotValue?.row?.date) {
         return d.slotValue.row.date.replaceAll("-", "/");
       }
@@ -177,7 +177,7 @@ export const codeConfig=[
               },
               slots: {
                 //empty:{type:'component',value:Search},
-                default: function (sp) {
+                default: function (context,sp) {
                   let address = sp.slotValue.row.address;
                   //This the HTML of el-tag
                   return (
@@ -194,7 +194,7 @@ export const codeConfig=[
         },
       },
       events: {},
-    });
+    });    
     `},
     {key:'data2.ts',caption:'data2.ts',content:`export const configTableSimple = {
       columns: [
@@ -226,7 +226,7 @@ export const codeConfig=[
     };
     
     function elTagFormatter(type, key) {
-      return function (sp) {
+      return function (context,sp) {
         let address = sp.slotValue.row[key];
         //This the HTML of el-tag
         return (
@@ -238,58 +238,6 @@ export const codeConfig=[
         );
       };
     }
-    `},
-    {key:'tableTranlator.ts',caption:'tableTranlator.ts',content:`import { ref, reactive } from "vue";
-
-    export function useMyTable(value: any, config: any) {
-      let result = {
-        sys: {
-          component: "el-table",
-        },
-        props: {
-          stripe: true,
-          border: true,
-          showHeade: true,
-          //
-          data: value,
-        },
-        slots: {default: {type: "wrap", value: []}}
-      };
-      //build default
-      result.slots.default.value = buildColumns(config);
-      //
-      return reactive(result);
-    }
     
-    function buildColumns( config: any) {
-      let columns = [];
-      //
-      for (let c of config.columns || []) {
-        columns.push(buildColumn( c));
-      }
-      //
-      return columns;
-    }
-    function buildColumn(c: any) {
-      let column = {
-        sys: {
-          component: "el-table-column",
-        },
-        props: {},
-      };
-      //props
-      for (let k of Object.keys(c)) {
-      if(k.startsWith('_')){
-        continue;
-      }
-        column.props[k] = c[k];
-      }
-      //If there is a formatter, try to handle this
-      if (c._formatter){
-      column.slots={default:c._formatter}
-      }
-      //
-      return column;
-    }
     `},
   ]
