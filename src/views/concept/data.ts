@@ -55,7 +55,7 @@ export const configInput2 = reactive({
             component: "el-tag",
           },
           props: {
-            type: "primary",
+            type: "warning",
             effect: "dark",
           },
           slots: {
@@ -119,7 +119,7 @@ export const configInput3 = reactive({
             component: "el-tag",
           },
           props: {
-            type: "primary",
+            type: "success",
             effect: "dark",
           },
           slots: {

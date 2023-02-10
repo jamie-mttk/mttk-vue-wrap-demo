@@ -86,7 +86,7 @@ export const codeConfig=[
                 component: "el-tag",
               },
               props: {
-                type: "primary",
+                type: "warning",
                 effect: "dark",
               },
               slots: {
@@ -150,7 +150,7 @@ export const codeConfig=[
                 component: "el-tag",
               },
               props: {
-                type: "primary",
+                type: "success",
                 effect: "dark",
               },
               slots: {

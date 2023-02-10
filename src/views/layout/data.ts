@@ -108,7 +108,9 @@ export const layoutwConfig = reactive({
           }],
         },
       },
-      {
+      {sys: {
+        component: "el-col",
+      },
         props: {
           span: 24,
         },

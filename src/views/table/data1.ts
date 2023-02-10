@@ -100,7 +100,7 @@ export const tableConfig1 = reactive({
                     component: "el-tag",
                   },
                   props: {
-                    type: "primary",
+                    type: "success",
                     effect: "dark",
                   },
                   slots: {

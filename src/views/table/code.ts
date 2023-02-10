@@ -152,7 +152,7 @@ export const codeConfig=[
                         component: "el-tag",
                       },
                       props: {
-                        type: "primary",
+                        type: "success",
                         effect: "dark",
                       },
                       slots: {
@@ -194,7 +194,7 @@ export const codeConfig=[
         },
       },
       events: {},
-    });    
+    });        
     `},
     {key:'data2.ts',caption:'data2.ts',content:`export const configTableSimple = {
       columns: [
