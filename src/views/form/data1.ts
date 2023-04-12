@@ -1,6 +1,6 @@
 import { ref, reactive, isRef, computed } from "vue";
 
-export const formValue = reactive({ name: "o", address: "1" });
+export const formValue = reactive({ name: "o", address: "1",switch:true });
 export const formConfig1 = reactive({
   sys: {
     //
@@ -20,6 +20,34 @@ export const formConfig1 = reactive({
     default: {
       type: "wrap",
       value: [
+        {
+          sys: {
+            //
+            component: "el-form-item",
+          },
+          props: {
+            //
+            label: "Switch",
+            prop: "switch",
+            labelWidth: "50px",
+            required: true,
+          },
+          slots: {
+            default: {
+              type: "wrap",
+              value: {
+                sys: {
+                  component: "ElSwitch",
+                  modelValue: formValue,
+                  modelValuePath:'switch',
+                },
+                props: {
+                  validateEvent:false,
+                },
+              },
+            },
+          },
+        },
         {
           sys: {
             //
@@ -50,6 +78,7 @@ export const formConfig1 = reactive({
                 },
                 props: {
                   //
+                  disabled:computed(()=>formValue.switch),
                   placeholder: "Please input name to filter",
                   clearable: false,
                 },
@@ -61,6 +90,7 @@ export const formConfig1 = reactive({
           sys: {
             //
             component: "el-form-item",
+            show:computed(()=>formValue.switch),
           },
           props: {
             label: "Address",
@@ -120,6 +150,7 @@ export const formConfig2 = reactive({
           },
         }),
         //
+    
         placeholder: "Please input name to filter",
         clearable: false,
       },
