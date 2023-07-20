@@ -1,7 +1,7 @@
 import { ref, reactive } from "vue";
 
 
-export function useMySelect(config: any) {
+export function selectTransform(config: any) {
   //Clone may cause the value to be evaluted?So no clone here so far
 let configNew=config
   //extra

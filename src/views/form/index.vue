@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive, defineAsyncComponent, computed, isRef, isReactive, onBeforeUpdate } from 'vue'
-import { formValue, formConfig1,formConfig2 } from './data1.ts'
-import { configFormSimple } from './data2.ts'
-import { useMyForm } from './formTranslator.ts'
+import { formValue, formConfig1,formConfig2,formConfig3 } from './data.ts'
 import  CodeView from '@/components/CodeView/index.vue'
 import {codeConfig} from './code.ts'
-//
-const formConfigNew = useMyForm(formValue, configFormSimple)
+
 
 </script>
 
@@ -25,15 +22,14 @@ const formConfigNew = useMyForm(formValue, configFormSimple)
 
 		<el-divider></el-divider>
 		<h3>Same as the previous samples, here we define a simple form config format to simplify the configuration<br />
-			In a real project, the useMyForm may have a third paramter to project specific specification.<br />
 			Anyway here only demo hwo to simplify the configuration, you could design your simplify method as you like.<br/>
-			Refer to configFormSimple in "data2.ts".</h3>
+			Refer to formConfig3 in "data.ts".</h3>
 
-		<CompWrap ref="mainRef3" :config="formConfigNew"></CompWrap>
+		<CompWrap ref="mainRef3" :config="formConfig3"></CompWrap>
 		
 		<CodeView :config="codeConfig"></CodeView>
 	</div>
 </template>
 <style>
 
-</style>
+</style>./data.js

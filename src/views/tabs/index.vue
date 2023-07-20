@@ -9,7 +9,7 @@ import {codeConfig} from './code.ts'
 <template>
 	<div style="margin:10px;">
 
-		<h3>Tabs is a pure container component. This demo reuse the compoents of the previous demos.</h3>
+		<h3>Tabs is a pure container component. This demo reuse the config of the previous demos.</h3>
 		<CompWrap ref="mainRef" :config="tabsConfig"></CompWrap>
 		
 		<CodeView :config="codeConfig"></CodeView>

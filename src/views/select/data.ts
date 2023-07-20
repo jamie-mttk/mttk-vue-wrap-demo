@@ -1,10 +1,11 @@
 import { ref, reactive } from "vue";
+import {selectTransform} from './selectTranslator'
 
 //The value of the input which are share in this sample
 export const value = ref("003");
 
 //
-export const config1 = reactive({
+export const config1 = {
   sys: {
     //
     component: "ElSelect",
@@ -48,14 +49,16 @@ export const config1 = reactive({
     ],
   },
   events: {},
-});
+}
 
 //
-export const config2 = reactive({
+export const config2 = {
   sys: {
     //
     component: "ElSelect",
     modelValue: value,
+    //Here a transform is set to parse the options
+    transform:selectTransform,
   },
   props: {
     placeholder: "Please select",
@@ -76,13 +79,14 @@ export const config2 = reactive({
       ],
     },
   },
-});
+}
 //
-export const config3 = reactive({
+export const config3 = {
   sys: {
     //
     component: "ElSelect",
     modelValue: value,
+    transform:selectTransform,
   },
   props: {
     placeholder: "Please select",
@@ -98,7 +102,7 @@ export const config3 = reactive({
       value: loadOptions,
     },
   },
-});
+}
 //Demo to load data,maybe from remote server
 function loadOptions() {
   return [

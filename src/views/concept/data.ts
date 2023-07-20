@@ -4,11 +4,30 @@ import { ref, reactive,computed} from "vue";
 export const valueInput = ref("InitValue");
 
 //A simple input configuration
-export const configInput1 = reactive({
+export const configInput1 = {
+  //System level configuration
+  sys: {
+    //The component to render
+    component: "ElInput",
+    //
+    modelValue: valueInput
+  },
+  //Properties
+  props: {
+    placeholder: "Please input value",
+    clearable: true,
+  }
+}
+//
+//Input size to demostrate that the config properties can be changed dynamically
+const inputSize = ref("default");
+//A complex input configuration
+export const configInput2 = reactive({
   sys: {
     //
     component: "ElInput",
-    //Set modelValue with computed,demo only since here it is not necessary
+    //Model value can also be set as a readable and writable computed
+    //Here it is not necessary to use computed,just for demo
     modelValue: computed({
       get() {
         return valueInput.value
@@ -19,29 +38,13 @@ export const configInput1 = reactive({
     }),
   },
   props: {
-    placeholder: "Please input value",
-    clearable: true,
-  },
-  slots: {},
-  events: {},
-});
-//
-//Input size to demostrate that the config properties can be changed dynamically
-const inputSize = ref("default");
-//A complex input configuration
-export const configInput2 = reactive({
-  sys: {
-    //
-    component: "ElInput",
-    modelValue: valueInput,
-  },
-  props: {
     placeholder: "Please input value complex sample",
     clearable: true,
     prefixIcon: "Calendar",
     disabled: false,
     size: inputSize,
   },
+  //Below is to demo the slot use
   slots: {
     //It can be an array/object, the value can be an array/object as well
     //For one slot it can be configured by different types
@@ -74,11 +77,20 @@ export const configInput2 = reactive({
     //The value is a array
     append: [{ type: "html", value: "H<b>ell</b>o " }, sampleAppend],
   },
+  //Define events
   events: {
     //Once get focus enlarge the component and restore once lose focus
     blur: { type: "function", value: inputBlur },
     focus: { type: "function", value: inputFocused },
   },
+  lifecycle:{
+    onMounted:()=>{
+      console.log('el-input is mounted>>>>>>>>>>>>>')
+    },
+    onUnmounted:()=>{
+      console.log('el-input is unmounted<<<<<<<<<<<<')
+    }
+  }
 });
 //
 function samplePrepend() {
@@ -92,7 +104,7 @@ function inputFocused() {
   inputSize.value = "large";
 }
 function inputBlur() {
-  inputSize.value = "default";
+  inputSize.value = "small";
 }
 
 //Flat configuration
@@ -142,5 +154,11 @@ export const configInput3 = reactive({
     //Once get focus enlarge the component and restore once lose focus
     "@blur": { type: "function", value: inputBlur },
     "@focus": { type: "function", value: inputFocused },
-
+    //lifecycle
+    "^onMounted":()=>{
+      console.log('el-input is mounted of flat config >>>>>>>>>>>>>')
+    },
+    "^onUnmounted":()=>{
+      console.log('el-input is unmounted of flat config <<<<<<<<<<<<')
+    }
 });

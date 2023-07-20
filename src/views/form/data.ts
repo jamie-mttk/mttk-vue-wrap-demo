@@ -1,7 +1,7 @@
 import { ref, reactive, isRef, computed } from "vue";
-
+import {formTransform} from './formTransform'
 export const formValue = reactive({ name: "o", address: "1",switch:true });
-export const formConfig1 = reactive({
+export const formConfig1 = {
   sys: {
     //
     component: "ElForm",
@@ -119,9 +119,9 @@ export const formConfig1 = reactive({
   events: {
     validate: { type: "inherit", value: "validate" },
   },
-});
+}
 
-export const formConfig2 = reactive({
+export const formConfig2 = {
   "~component": "ElForm",
   // inline:true,
   labelPosition: "right",
@@ -169,6 +169,33 @@ export const formConfig2 = reactive({
       },
     },
   ],
-
   "@validate": { type: "inherit", value: "validate" },
-});
+}
+
+export const formConfig3 = {
+  '~transform':formTransform(formValue),
+  items: [
+    {
+      props: {
+        label: "Name",
+        prop: "name",
+        labelWidth: "50px",
+      },
+      component: "ElInput",
+      componentProp: {
+        placeholder: "Please input name to filter",
+        clearable: true,
+      },
+    },
+    {
+      props: {
+        prop: "address",
+      },
+      component: "ElInput",
+      componentProp: {
+        placeholder: "Please input addrss to filter",
+        clearable: true,
+      },
+    },
+  ],
+};

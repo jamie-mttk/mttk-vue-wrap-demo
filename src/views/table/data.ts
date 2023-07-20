@@ -1,4 +1,4 @@
-import { ref, reactive } from "vue";
+import { ref, reactive,toRaw,unref } from "vue";
 
 export const tableValue = ref([
   {
@@ -24,14 +24,14 @@ export const tableValue = ref([
 ]);
 
 //Just for demo purpose
-function formatBirthday(context,d) {
+function formatBirthday(d)   {
   if (d.slotValue?.row?.date) {
     return d.slotValue.row.date.replaceAll("-", "/");
   }
   return "No data";
 }
 
-export const tableConfig1 = reactive({
+export const tableConfig1 = {
   sys: {
     component: "el-table",
   },
@@ -71,13 +71,13 @@ export const tableConfig1 = reactive({
           props: {
             prop: "date",
             sortable: true,
-            width: "200px",
+            width: "300px",
           },
           slots: {
             //Use a funciton to genreate output
             default: { type: "function", value: formatBirthday },
             //Change caption
-            header: { type: "html", value: "Customer <b>birthday</b>" },
+            header: { type: "html", value: "Custom  header <b>birthday</b>" },
           },
         },
         {
@@ -91,6 +91,8 @@ export const tableConfig1 = reactive({
           },
           slots: {
             //Please note it is a function to get value from parameter sp
+            //The function return is vue wrapper format
+            //type:"wrap" can not be ignored, otherwise the funciton return will be considered as HTML[Refer to Address column].
             default: {
               type: "wrap",
               value: function (sp) {
@@ -106,7 +108,6 @@ export const tableConfig1 = reactive({
                   slots: {
                     default: sp.slotValue.row.name,
                   },
-                  events: {},
                 };
               },
             },
@@ -117,15 +118,15 @@ export const tableConfig1 = reactive({
             component: "el-table-column",
           },
           props: {
-            //子元素配置,具体含义由组件决定,这里不以_开头的会设置到Form Item上
+            //
             prop: "address",
             label: "Address",
             width: "auto",
-            //_开头的说明是特殊含义,这里是指字段宽度,可以覆盖上层的设置
+
           },
           slots: {
             //empty:{type:'component',value:Search},
-            default: function (context,sp) {
+            default: function (sp) {
               let address = sp.slotValue.row.address;
               //This the HTML of el-tag
               return (
@@ -142,4 +143,104 @@ export const tableConfig1 = reactive({
     },
   },
   events: {},
-});
+}
+
+
+export const tableConfig2 = {
+  //vueWrapper will use this transform to generate table configuration
+  '~transform':tableTransform,
+  columns: [
+    {
+      type: "selection",
+    },
+    {
+      type: "index",
+      label: "#",
+    },
+    {
+      prop: "date",
+      label: "Date",
+      sortable: true,
+      width: "200px",
+    },
+    {
+      prop: "name",
+      label: "Name",
+      width: "300px",
+      _formatter: elTagFormatter('primay','name'),
+    },
+    {
+      prop: "address",
+      label: "Address",
+      _formatter: elTagFormatter('success','address'),
+    },
+  ],
+};
+
+function elTagFormatter(type, key) {
+  return function (sp) {
+    let address = sp.slotValue.row[key];
+    //This the HTML of el-tag
+    return (
+      '<span class="el-tag el-tag--'+type+' el-tag--dark">' +
+      '<span class="el-tag__content">' +
+      address +
+      "</span>" +
+      "</span>"
+    );
+  };
+}
+
+
+
+export function tableTransform(config: any) {
+  // console.log(JSON.stringify(ctx.props))
+  let result = {
+    sys: {
+      component: "el-table",
+    },
+    props: {
+      stripe: true,
+      border: true,
+      showHeade: true,
+      //
+      data: tableValue,
+    },
+    slots: {default: {type: "wrap", value: []}}
+  };
+  //build default
+  result.slots.default.value = buildColumns(config);
+  //
+  return result
+}
+
+function buildColumns( config: any) {
+  let columns = [];
+  //
+  for (let c of config.columns || []) {
+    columns.push(buildColumn( c));
+  }
+  //
+  return columns;
+}
+function buildColumn(c: any) {
+  let column = {
+    sys: {
+      component: "el-table-column",
+    },
+    props: {},
+  };
+  //props
+  for (let k of Object.keys(c)) {
+	if(k.startsWith('_')){
+		continue;
+	}
+    column.props[k] = c[k];
+  }
+  //If there is a formatter, try to handle this
+  if (c._formatter){
+	column.slots={default:c._formatter}
+  }
+  //
+  return column;
+}

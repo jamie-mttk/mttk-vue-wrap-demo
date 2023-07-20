@@ -1,19 +1,15 @@
 import { ref, reactive } from "vue";
 
-import { tableValue } from "@/views/table/data1.ts";
-import { useMyTable } from "@/views/table/tableTranlator.ts";
-import { configTableSimple } from "@/views/table/data2.ts";
+import { tableValue,tableConfig2 } from "@/views/table/data";
 
-import { formValue } from "@/views/form/data1.ts";
-import { useMyForm } from "@/views/form/formTranslator.ts";
-import { configFormSimple } from "@/views/form/data2.ts";
+
+
+import { formValue ,formConfig2} from "@/views/form/data";
+
+
 
 export const tabsSelect = ref("Basic");
-//TABLE
-const tableConfig = useMyTable(tableValue, configTableSimple);
 
-//FORM
-const formConfig = useMyForm(formValue, configFormSimple);
 
 //
 export const tabsConfig = reactive({
@@ -58,7 +54,7 @@ export const tabsConfig = reactive({
             closable: false,
           },
           slots: {
-            default: { type: "wrap", value: tableConfig },
+            default: { type: "wrap", value: tableConfig2 },
           },
         },
         {
@@ -72,7 +68,7 @@ export const tabsConfig = reactive({
             closable: true,
           },
           slots: {
-            default: { type: "wrap", value: formConfig },
+            default: { type: "wrap", value: formConfig2 },
           },
         },
       ],

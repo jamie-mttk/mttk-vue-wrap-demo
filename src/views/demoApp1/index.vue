@@ -4,30 +4,30 @@ import { Codemirror } from "vue-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
 //Reuse the form and table defined
-import { configFormSimple } from '@/views/form/data2.ts'
+import { formConfig2,formValue } from '@/views/form/data.ts'
 
-import { configTableSimple } from '@/views/table/data2.ts'
+import { tableConfig2,tableValue } from '@/views/table/data.ts'
 
 
-import useApp1Transtator from './app1Transtator.ts'
+import useApp1Transtator from './app1Transform.ts'
 
 import  CodeView from '@/components/CodeView/index.vue'
 import {codeConfig} from './code.ts'
 
 //This is the cofniguration to define a demo page
 let configPage = reactive({
-	criteriaConfig: configFormSimple,
-	tableConfig: configTableSimple,
+	criteriaConfig: formConfig2,
+	tableConfig: tableConfig2,
 	retrieveMethod: retrieveDataDemo,//Demo to retrive data from server,in a real project it can be a URL
 })
 //Use to show code
 let configText = JSON.stringify(configPage, null, 2)
 
 //Translate to standard cofniguration
-let { configTranslated, criteriaValue, tableValue } = useApp1Transtator(configPage)
+let { configTranslated } = useApp1Transtator(configPage,formValue,tableValue)
 //Here set the default criteria 
-criteriaValue.name = 'Hello'
-criteriaValue.address = 'World'
+formValue.name = 'Hello'
+formValue.address = 'World'
 
 
 //Get a random int
@@ -99,4 +99,4 @@ let activeTab = ref('demo')
 	margin: 16px !important;
 	border: 3px dotted yellow;
 }
-</style>
+</style>./app1Transform.js

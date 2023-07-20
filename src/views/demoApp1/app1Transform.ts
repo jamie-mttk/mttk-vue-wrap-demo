@@ -1,19 +1,15 @@
 //
 import { ref, reactive, computed } from "vue";
 
-import { useMyForm } from "@/views/form/formTranslator.ts";
-import { useMyTable } from "@/views/table/tableTranlator.ts";
+
 //
 //
-export default function useApp1Transtator(config) {
-  //
-  const criteriaValue = reactive({});
-  const tableValue = ref([]);
+export default function useApp1Transtator(config,formValue,tableValue) {
   //
   function onSearch() {
 	//First we could validate form here,ignored
 	//Call configed function to retrieve data
-    let result = config.retrieveMethod(criteriaValue);
+    let result = config.retrieveMethod(formValue);
     tableValue.value = result;
   }
   //
@@ -33,7 +29,7 @@ export default function useApp1Transtator(config) {
             span: 22,
           },
           slots: {
-            default: useMyForm(criteriaValue, config.criteriaConfig),
+            default:config.criteriaConfig
           },
         },
         {
@@ -62,12 +58,12 @@ export default function useApp1Transtator(config) {
             span: 24,
           },
           slots: {
-            default: useMyTable(tableValue, config.tableConfig),
+            default:config.tableConfig
           },
         },
       ],
     },
   });
   //
-  return { configTranslated, criteriaValue, tableValue };
+  return { configTranslated, formValue, tableValue };
 }

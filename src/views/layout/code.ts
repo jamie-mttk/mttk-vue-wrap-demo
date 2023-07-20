@@ -1,27 +1,26 @@
 export const codeConfig=[
-    {key:'index.vue',caption:'index.vue',content:`<script setup lang="ts">
+    {key:'index.vue',caption:'index.vue',content:`<<script setup lang="ts">
 
-import { layoutwConfig } from './data.ts'
-import  CodeView from '@/components/CodeView/index.vue'
-import {codeConfig} from './code.ts'
-
-
-
-</script>
-
-<template>
-	<h3>Layout is another container component. This implementation is based on element plus el-row/el-col.</h3>
-	<CompWrap ref="mainRef1" :config="layoutwConfig"></CompWrap>
-		
-	<CodeView :config="codeConfig"></CodeView>
-</template>
-<style>
-
-</style>`},
+    import { layoutwConfig } from './data.ts'
+    import  CodeView from '@/components/CodeView/index.vue'
+    import {codeConfig} from './code.ts'
+    
+    
+    
+    </script>
+    
+    <template>
+      <h3>Layout is another container component. This implementation is based on element plus el-row/el-col.<br>
+      Absolutely we could simplify the configuration(Not implemented here).</h3>
+      <CompWrap ref="mainRef1" :config="layoutwConfig"></CompWrap>
+        
+      <CodeView :config="codeConfig"></CodeView>
+    </template>
+    <style>
+    
+    </style>`},
     {key:'data.ts',caption:'data.ts',content:`import { ref, reactive } from "vue";
-    import { tableConfig1 } from "@/views/table/data1.ts";
-    
-    
+    import { tableConfig1 } from "@/views/table/data";
     
     const myColor = ref("#ffff00");
     export const layoutwConfig = reactive({
@@ -53,7 +52,7 @@ import {codeConfig} from './code.ts'
               minHeight: "48px",
             },
           },
-        {
+          {
             sys: {
               component: "el-col",
             },
@@ -61,7 +60,7 @@ import {codeConfig} from './code.ts'
               span: 8,
             },
             slots: {
-          default: "First row second column",
+              default: "First row second column",
             },
             styles: {
               borderRadius: "4px",
@@ -70,7 +69,7 @@ import {codeConfig} from './code.ts'
               minHeight: "48px",
             },
           },
-        {
+          {
             sys: {
               component: "el-col",
             },
@@ -78,7 +77,7 @@ import {codeConfig} from './code.ts'
               span: 8,
             },
             slots: {
-          default: "First row third column",
+              default: "First row third column",
             },
             styles: {
               borderRadius: "4px",
@@ -87,7 +86,7 @@ import {codeConfig} from './code.ts'
               minHeight: "48px",
             },
           },
-        {
+          {
             sys: {
               component: "el-col",
             },
@@ -95,7 +94,7 @@ import {codeConfig} from './code.ts'
               span: 12,
             },
             slots: {
-          default: "Second row first column",
+              default: "Second row first column",
             },
           },
           {
@@ -107,30 +106,34 @@ import {codeConfig} from './code.ts'
             },
             slots: {
               //empty:{type:'component',value:Search},
-              default: ["You can change background here",{
-                type: "wrap",
-                value: {
-                  sys: {
-                    component: "el-color-picker",
-                    modelValue: myColor,
-                  },
-                  props: {
-                    //
-                    showAlpha: true,
-                  },
-                  styles: {
-                    borderRadius: "1px",
-                    backgroundColor: "#0000ff",
-                    border: "2px solid purple",
-                    minHeight: "64px",
+              default: [
+                "You can change background here",
+                {
+                  type: "wrap",
+                  value: {
+                    sys: {
+                      component: "el-color-picker",
+                      modelValue: myColor,
+                    },
+                    props: {
+                      //
+                      showAlpha: true,
+                    },
+                    styles: {
+                      borderRadius: "1px",
+                      backgroundColor: "#0000ff",
+                      border: "2px solid purple",
+                      minHeight: "64px",
+                    },
                   },
                 },
-              }],
+              ],
             },
           },
-          {sys: {
-            component: "el-col",
-          },
+          {
+            sys: {
+              component: "el-col",
+            },
             props: {
               span: 24,
             },
@@ -150,5 +153,6 @@ import {codeConfig} from './code.ts'
       },
       classes: ["testClass1"],
     });
+    
     `}
   ]

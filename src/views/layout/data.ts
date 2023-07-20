@@ -1,7 +1,5 @@
 import { ref, reactive } from "vue";
-import { tableConfig1 } from "@/views/table/data1.ts";
-
-
+import { tableConfig1 } from "@/views/table/data";
 
 const myColor = ref("#ffff00");
 export const layoutwConfig = reactive({
@@ -33,7 +31,7 @@ export const layoutwConfig = reactive({
           minHeight: "48px",
         },
       },
-	  {
+      {
         sys: {
           component: "el-col",
         },
@@ -41,7 +39,7 @@ export const layoutwConfig = reactive({
           span: 8,
         },
         slots: {
-			default: "First row second column",
+          default: "First row second column",
         },
         styles: {
           borderRadius: "4px",
@@ -50,7 +48,7 @@ export const layoutwConfig = reactive({
           minHeight: "48px",
         },
       },
-	  {
+      {
         sys: {
           component: "el-col",
         },
@@ -58,7 +56,7 @@ export const layoutwConfig = reactive({
           span: 8,
         },
         slots: {
-			default: "First row third column",
+          default: "First row third column",
         },
         styles: {
           borderRadius: "4px",
@@ -67,7 +65,7 @@ export const layoutwConfig = reactive({
           minHeight: "48px",
         },
       },
-	  {
+      {
         sys: {
           component: "el-col",
         },
@@ -75,7 +73,7 @@ export const layoutwConfig = reactive({
           span: 12,
         },
         slots: {
-			default: "Second row first column",
+          default: "Second row first column",
         },
       },
       {
@@ -87,30 +85,34 @@ export const layoutwConfig = reactive({
         },
         slots: {
           //empty:{type:'component',value:Search},
-          default: ["You can change background here",{
-            type: "wrap",
-            value: {
-              sys: {
-                component: "el-color-picker",
-                modelValue: myColor,
-              },
-              props: {
-                //
-                showAlpha: true,
-              },
-              styles: {
-                borderRadius: "1px",
-                backgroundColor: "#0000ff",
-                border: "2px solid purple",
-                minHeight: "64px",
+          default: [
+            "You can change background here",
+            {
+              type: "wrap",
+              value: {
+                sys: {
+                  component: "el-color-picker",
+                  modelValue: myColor,
+                },
+                props: {
+                  //
+                  showAlpha: true,
+                },
+                styles: {
+                  borderRadius: "1px",
+                  backgroundColor: "#0000ff",
+                  border: "2px solid purple",
+                  minHeight: "64px",
+                },
               },
             },
-          }],
+          ],
         },
       },
-      {sys: {
-        component: "el-col",
-      },
+      {
+        sys: {
+          component: "el-col",
+        },
         props: {
           span: 24,
         },
