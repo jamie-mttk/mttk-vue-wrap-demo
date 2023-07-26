@@ -108,7 +108,7 @@ function inputBlur() {
 }
 
 //Flat configuration
-export const configInput3 = reactive({
+export const configInput3 ={
   //sys
     "~component": "ElInput",
     "~modelValue": valueInput,
@@ -161,4 +161,4 @@ export const configInput3 = reactive({
     "^onUnmounted":()=>{
       console.log('el-input is unmounted of flat config <<<<<<<<<<<<')
     }
-});
+}
