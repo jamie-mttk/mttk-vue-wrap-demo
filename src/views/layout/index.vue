@@ -11,7 +11,7 @@ import {codeConfig} from './code.ts'
 <template>
 	<h3>Layout is another container component. This implementation is based on element plus el-row/el-col.<br>
 	Absolutely we could simplify the configuration(Not implemented here).</h3>
-	<CompWrap ref="mainRef1" :config="layoutwConfig"></CompWrap>
+	<MttkWrapComp ref="mainRef1" :config="layoutwConfig"></MttkWrapComp>
 		
 	<CodeView :config="codeConfig"></CodeView>
 </template>

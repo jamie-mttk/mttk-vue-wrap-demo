@@ -1,145 +1,42 @@
 import { ref, reactive, isRef, computed } from "vue";
-import {formTransform} from './formTransform'
-export const formValue = reactive({ name: "o", address: "1",switch:true });
+import { formFunc } from "./formFunc";
+export const formValue = reactive({ name: "o", address: "1", switch: true });
 export const formConfig1 = {
-  sys: {
-    //
-    component: "ElForm",
-  },
-  props: {
-    // inline:true,
-    labelPosition: "right",
-    labelWidth: 60,
-    size: "default",
-    disabled: false,
-    model: formValue,
-    inline: true,
-  },
+  "~": "ElForm",
   //
-  slots: {
-    default: {
-      type: "wrap",
-      value: [
-        {
-          sys: {
-            //
-            component: "el-form-item",
-          },
-          props: {
-            //
-            label: "Switch",
-            prop: "switch",
-            labelWidth: "50px",
-            required: true,
-          },
-          slots: {
-            default: {
-              type: "wrap",
-              value: {
-                sys: {
-                  component: "ElSwitch",
-                  modelValue: formValue,
-                  modelValuePath:'switch',
-                },
-                props: {
-                  validateEvent:false,
-                },
-              },
-            },
-          },
-        },
-        {
-          sys: {
-            //
-            component: "el-form-item",
-          },
-          props: {
-            //
-            label: "Name",
-            prop: "name",
-            labelWidth: "50px",
-            required: true,
-          },
-          slots: {
-            default: {
-              type: "wrap",
-              value: {
-                sys: {
-                  component: "ElInput",
-                  //Use a computed to config modelValue
-                  modelValue: computed({
-                    get() {
-                      return formValue.name;
-                    },
-                    set(valueNew) {
-                      formValue.name = valueNew;
-                    },
-                  }),
-                },
-                props: {
-                  //
-                  disabled:computed(()=>formValue.switch),
-                  placeholder: "Please input name to filter",
-                  clearable: false,
-                },
-              },
-            },
-          },
-        },
-        {
-          sys: {
-            //
-            component: "el-form-item",
-            show:computed(()=>formValue.switch),
-          },
-          props: {
-            label: "Address",
-            prop: "address",
-          },
-          slots: {
-            default: {
-              type: "wrap",
-              value: {
-                sys: {
-                  component: "ElInput",
-                  //Use modelValuePath config modelValue
-                  modelValue: formValue,
-                  modelValuePath: "address",
-                },
-                props: {
-                  placeholder: "Input address to filter",
-                },
-              },
-            },
-          },
-        },
-      ],
-    },
-  },
-  events: {
-    validate: { type: "inherit", value: "validate" },
-  },
-}
-
-export const formConfig2 = {
-  "~component": "ElForm",
-  // inline:true,
   labelPosition: "right",
   labelWidth: 60,
   size: "default",
   disabled: false,
   model: formValue,
   inline: true,
+  //
   "#": [
     {
-      "~component": "el-form-item",
+      "~": "el-form-item",
+      //
+      label: "Switch",
+      prop: "switch",
+      labelWidth: "50px",
+      required: true,
+      //
+      "#": {
+        "~": "ElSwitch",
+        "~modelValue": formValue,
+        "~modelValuePath": "switch",
+      },
+    },
+    {
+      "~": "el-form-item",
       //
       label: "Name",
       prop: "name",
       labelWidth: "50px",
       required: true,
+
+      //
       "#": {
-        "~component": "ElInput",
+        "~": "ElInput",
         //Use a computed to config modelValue
         "~modelValue": computed({
           get() {
@@ -150,17 +47,21 @@ export const formConfig2 = {
           },
         }),
         //
-    
         placeholder: "Please input name to filter",
         clearable: false,
+        //Property can be computed
+        disabled: computed(() => formValue.switch),
       },
     },
     {
-      "~component": "el-form-item",
-      label: "Address2",
+      "~": "el-form-item",
+      show: computed(() => formValue.switch),
+      //
+      label: "Address",
       prop: "address",
+      //
       "#": {
-        "~component": "ElInput",
+        "~": "ElInput",
         //Use modelValuePath config modelValue
         "~modelValue": formValue,
         "~modelValuePath": "address",
@@ -170,32 +71,35 @@ export const formConfig2 = {
     },
   ],
   "@validate": { type: "inherit", value: "validate" },
-}
+};
 
-export const formConfig3 = {
-  '~transform':formTransform(formValue),
+export const formConfig2 = {
+  "~": formFunc(formValue),
   items: [
     {
-      props: {
-        label: "Name",
-        prop: "name",
-        labelWidth: "50px",
-      },
-      component: "ElInput",
-      componentProp: {
-        placeholder: "Please input name to filter",
-        clearable: true,
-      },
+      _label: "Switch",
+      _prop: "switch",
+      _labelWidth: "50px",
+
+      "~": "ElSwitch",
     },
     {
-      props: {
-        prop: "address",
-      },
-      component: "ElInput",
-      componentProp: {
-        placeholder: "Please input addrss to filter",
-        clearable: true,
-      },
+      _label: "Name",
+      _prop: "name",
+      _labelWidth: "50px",
+
+      "~": "ElInput",
+      placeholder: "Please input name to filter",
+      clearable: true,
+      disabled: computed(() => formValue.switch),
+    },
+    {
+      _label: "Address",
+      _prop: "address",
+
+      "~": "ElInput",
+      placeholder: "Please input addrss to filter",
+      clearable: true,
     },
   ],
 };

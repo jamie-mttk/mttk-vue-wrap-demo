@@ -1,114 +1,56 @@
 import { ref, reactive } from "vue";
-import {selectTransform} from './selectTranslator'
+import { selectFunc } from "./selectFunc";
 
 //The value of the input which are share in this sample
 export const value = ref("003");
 
 //
 export const config1 = {
-  sys: {
-    //
-    component: "ElSelect",
-    modelValue: value,
-  },
-  props: {
-    placeholder: "Please select manager",
-    clearable: true,
-    filterable: true,
-  },
-  slots: {
-    default: [
-      {
-        type: "wrap",
-        value: {
-          sys: { component: "ElOption" },
-          props: { label: "Tom", value: "001" },
-        },
-      },
-      {
-        type: "wrap",
-        value: {
-          sys: { component: "ElOption" },
-          props: { label: "Jack", value: "002" },
-        },
-      },
-      {
-        type: "wrap",
-        value: {
-          sys: { component: "ElOption" },
-          props: { label: "Peter", value: "003" },
-        },
-      },
-      {
-        type: "wrap",
-        value: {
-          sys: { component: "ElOption" },
-          props: { label: "Alice", value: "004" },
-        },
-      },
-    ],
-  },
-  events: {},
-}
+  "~": "ElSelect",
+  "~modelValue": value,
+  //
+  placeholder: "Please select manager",
+  clearable: true,
+  filterable: true,
+  //
+  "#": [
+    {
+      "~": "ElOption",
+      label: "Tom",
+      value: "001",
+    },
+
+    {
+      "~": "ElOption",
+      label: "Jack",
+      value: "002",
+    },
+    {
+      "~": "ElOption",
+      label: "Peter",
+      value: "003",
+    },
+    {
+      "~": "ElOption",
+      label: "Alice",
+      value: "004",
+    },
+  ],
+};
 
 //
 export const config2 = {
-  sys: {
-    //
-    component: "ElSelect",
-    modelValue: value,
-    //Here a transform is set to parse the options
-    transform:selectTransform,
-  },
-  props: {
-    placeholder: "Please select",
-    clearable: true,
-    filterable: true,
-  },
-  slots: {},
-  events: {},
-  extra: {
-    options: {
-      valueField: "code",
-      labelField: "name",
-      value: [
-        { code: "001", name: "Tom" },
-        { code: "002", name: "Jack" },
-        { code: "003", name: "Peter" },
-        { code: "004", name: "Alice" },
-      ],
-    },
-  },
-}
-//
-export const config3 = {
-  sys: {
-    //
-    component: "ElSelect",
-    modelValue: value,
-    transform:selectTransform,
-  },
-  props: {
-    placeholder: "Please select",
-    clearable: false,
-    filterable: false,
-  },
-  slots: {},
-  events: {},
-  extra: {
-    options: {
-      valueField: "code",
-      labelField: "name",
-      value: loadOptions,
-    },
-  },
-}
-//Demo to load data,maybe from remote server
-function loadOptions() {
-  return [
-    { code: "001", name: "Tom" },
-    { code: "002", name: "Jack" },
-    { code: "003", name: "Peter" },
-    { code: "004", name: "Alice" },
-  ];
-}
+  "~": selectFunc,
+  "~modelValue": value,
+  //
+  placeholder: "Please select manager",
+  clearable: true,
+  filterable: true,
+  //
+  _options: [
+    { value: "001", label: "Tom" },
+    { value: "002", label: "Jack" },
+    { value: "003", label: "Peter" },
+    { value: "004", label: "Alice" },
+  ],
+};

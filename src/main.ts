@@ -6,7 +6,7 @@ import router from './router'
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 //
-import WRAPPER from 'vuewrapper'
+import MttkVueWrap from 'mttk-vue-wrap';
 
 //
 import './assets/main.css'
@@ -16,8 +16,6 @@ const app = createApp(App)
 app.use(router)
 app.use(ElementPlus)
 //vue wrapper install
-//Another way is to install as required, import component in the vue file
-//import {CompWrap} from 'vuewrapper'
-app.use(WRAPPER)
+app.use(MttkVueWrap);
 //
 app.mount('#app')

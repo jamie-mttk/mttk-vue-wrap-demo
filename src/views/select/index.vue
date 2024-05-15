@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { value, config1,config2,config3} from './data.ts'
+import { value, config1,config2} from './data.ts'
 import {codeConfig} from './code.ts'
 import  CodeView from '@/components/CodeView/index.vue'
 
@@ -17,14 +17,12 @@ import  CodeView from '@/components/CodeView/index.vue'
 		</h3>
 		select value:{{ value }}
 		<h3>In this sample options are configured in slot directly.Refer to config1 in "data.ts".</h3>
-		<CompWrap :config="config1"></CompWrap>	
+		<MttkWrapComp :config="config1"></MttkWrapComp>	
 		<el-divider></el-divider>
 		<h3>In this sample options are configured by JSON array and then translated into standard format.Refer to config2 in "data.ts".</h3>
-		<CompWrap :config="config2"></CompWrap>	
+		<MttkWrapComp :config="config2"></MttkWrapComp>	
 		<el-divider></el-divider>
-		<h3>In this sample options are configured by function and then translated into standard format.Refer to config2 in "data.ts".</h3>
-		<CompWrap :config="config3"></CompWrap>	
-		<el-divider></el-divider>
+
 		<CodeView :config="codeConfig"></CodeView>
 	</div>
 </template>
