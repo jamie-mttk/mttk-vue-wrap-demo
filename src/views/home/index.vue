@@ -10,7 +10,7 @@
     The samples are based on <a href="https://element-plus.gitee.io/" target="_blank">element-plus </a><br>
     But this method also applies to other component libraries.<br>
 
-    Full documenttion is available <a href="https://github.com/jamie-mttk/vueWrapper" target="_blank">here </a>
+    Full documenttion is available <a href="https://github.com/jamie-mttk/mttk-vue-wrap" target="_blank">here </a>
   </div>
 </template>
 

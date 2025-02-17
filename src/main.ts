@@ -19,3 +19,5 @@ app.use(ElementPlus)
 app.use(MttkVueWrap);
 //
 app.mount('#app')
+//
+export {app}

@@ -44,11 +44,11 @@ const router = createRouter({
       name: 'Demo App 1',
       component: () =>  import('../views/demoApp1/index.vue')
     },
-    // {
-    //   path: '/test',
-    //   name: 'Test',
-    //   component: () =>  import('../views/test/index.vue')
-    // },
+    {
+      path: '/test',
+      name: 'Test',
+      component: () =>  import('../views/test/index.vue')
+    },
   ]
 })
 
